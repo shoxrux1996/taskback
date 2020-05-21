@@ -14,6 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+Route::group(['prefix' => 'task'], function () {
+    Route::post('add/{task?}', 'TaskController@addUpdate');
+    Route::delete('delete/{task}', 'TaskController@delete');
+    Route::get('/', 'TaskController@index');
+       // Route::put('update/{task}', 'TaskController@update');
 });
